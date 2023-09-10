@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from lessons.models import Lesson
-from lessons.serializers import LessonSerializer
+from lessons.serializers import LessonSerializer, LessonListSerializer
 from rest_framework.generics import CreateAPIView, ListAPIView, DestroyAPIView, RetrieveAPIView, UpdateAPIView
 
 
@@ -11,7 +11,7 @@ class LessonCreateView(CreateAPIView):
 
 class LessonListView(ListAPIView):
     queryset = Lesson.objects.all()
-    serializer_class = LessonSerializer
+    serializer_class = LessonListSerializer
 
 
 class LessonDestroyView(DestroyAPIView):
