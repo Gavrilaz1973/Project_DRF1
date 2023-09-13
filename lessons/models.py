@@ -1,6 +1,8 @@
 from django.db import models
 
+from config import settings
 from courses.models import Course
+from users.models import User
 
 NULLABLE = {'blank': True, 'null': True}
 
@@ -11,6 +13,7 @@ class Lesson(models.Model):
     description = models.TextField(**NULLABLE, verbose_name='Описание')
     video = models.TextField(**NULLABLE, verbose_name='Ссылка')
     course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='Курс', **NULLABLE)
+    user = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name='студенты', **NULLABLE)
 
     def __str__(self):
         return self.name

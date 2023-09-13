@@ -19,7 +19,7 @@ class Payment(models.Model):
                               verbose_name='Способ оплаты')
 
     def __str__(self):
-        return self.money
+        return f"{self.money}"
 
     class Meta:
         verbose_name = 'Оплата'
