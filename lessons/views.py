@@ -11,7 +11,7 @@ from rest_framework.generics import CreateAPIView, ListAPIView, DestroyAPIView, 
 class LessonCreateView(CreateAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = [AllowAny] #[IsSuperuser]
+    permission_classes = [IsSuperuser]
 
 
 class LessonListView(ListAPIView):
@@ -23,7 +23,7 @@ class LessonListView(ListAPIView):
 class LessonDestroyView(DestroyAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = [AllowAny]#[IsSuperuser]
+    permission_classes = [IsSuperuser]
 
 
 class LessonRetrieveView(RetrieveAPIView):
@@ -35,6 +35,6 @@ class LessonRetrieveView(RetrieveAPIView):
 class LessonUpdateView(UpdateAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = [AllowAny]#[IsOwnerOrStaff]
+    permission_classes = [IsOwnerOrStaff]
 
 
