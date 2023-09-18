@@ -20,3 +20,13 @@ class Course(models.Model):
         verbose_name_plural = 'Курсы'
 
 
+class Subscribe(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='курс')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь')
+
+    def __str__(self):
+        return f"{self.course} {self.user}"
+
+    class Meta:
+        verbose_name = 'Подписка'
+        verbose_name_plural = 'Подписки'
