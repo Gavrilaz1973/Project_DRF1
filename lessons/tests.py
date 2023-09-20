@@ -6,11 +6,11 @@ from users.models import User
 
 
 class LessonTestCase(APITestCase):
-    # client = APIClient()
-    # client.force_authenticate(user=None, token=None)
 
     def setUp(self) -> None:
-        pass
+        self.client = APIClient()
+        self.user = User.objects.create(email="test@sky.pro", is_superuser=True, is_staff=True)
+        self.client.force_authenticate(user=self.user)
 
     def test_create_lesson(self):
         '''Тестирование создания урока'''
@@ -20,6 +20,7 @@ class LessonTestCase(APITestCase):
         }
 
         response = self.client.post('/lessons/create/', data=data)
+        # print(response.json())
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_list_lesson(self):

@@ -35,3 +35,8 @@ class CourseDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class SubscribeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Subscribe
+        fields = '__all__'

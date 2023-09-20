@@ -1,9 +1,10 @@
-from rest_framework.generics import get_object_or_404
+from rest_framework.generics import get_object_or_404, CreateAPIView, ListAPIView, DestroyAPIView, RetrieveAPIView, \
+    UpdateAPIView
 from rest_framework.response import Response
 
-from courses.models import Course
+from courses.models import Course, Subscribe
 from courses.paginators import CoursePaginator
-from courses.serializers import CourseDetailSerializer, CourseSerializer
+from courses.serializers import CourseDetailSerializer, CourseSerializer, SubscribeSerializer
 from rest_framework.viewsets import ModelViewSet
 
 from lessons.permissions import IsSuperuser, IsOwnerOrStaff
@@ -32,8 +33,34 @@ class CourseViewSet(ModelViewSet):
         return Response(serializer.data)
 
 
+class SubscribeCreateView(CreateAPIView):
+    queryset = Subscribe.objects.all()
+    serializer_class = SubscribeSerializer
+    permission_classes = [IsSuperuser]
 
 
+class SubscribeListView(ListAPIView):
+    queryset = Subscribe.objects.all()
+    serializer_class = SubscribeSerializer
+    # permission_classes = [IsSuperuser]
+
+
+class SubscribeDestroyView(DestroyAPIView):
+    queryset = Subscribe.objects.all()
+    serializer_class = SubscribeSerializer
+    permission_classes = [IsSuperuser]
+
+
+class SubscribeRetrieveView(RetrieveAPIView):
+    queryset = Subscribe.objects.all()
+    serializer_class = SubscribeSerializer
+    permission_classes = [IsOwnerOrStaff]
+
+
+class SubscribeUpdateView(UpdateAPIView):
+    queryset = Subscribe.objects.all()
+    serializer_class = SubscribeSerializer
+    permission_classes = [IsOwnerOrStaff]
 
 
 
