@@ -11,7 +11,7 @@ class Payment(models.Model):
     METHOD_CHOICES = [('transfer', 'Перевод на счет'), ('cash', 'Наличные'),]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь', **NULLABLE)
-    pay_date = models.DateField(verbose_name='Дата оплаты')
+    pay_date = models.DateField(verbose_name='Дата оплаты', **NULLABLE)
     pay_course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='Оплаченный курс', **NULLABLE)
     pay_lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, verbose_name='Оплаченный урок', **NULLABLE)
     money = models.IntegerField(verbose_name='Оплаченная сумма')
