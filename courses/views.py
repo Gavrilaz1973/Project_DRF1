@@ -4,7 +4,7 @@ from rest_framework.response import Response
 
 from courses.models import Course, Subscribe
 from courses.paginators import CoursePaginator
-from courses.serializers import CourseDetailSerializer, CourseSerializer, SubscribeSerializer
+from courses.serializers import CourseDetailSerializer, CourseSerializer, SubscribeSerializer, CourseUpdateSerializer
 from rest_framework.viewsets import ModelViewSet
 
 from lessons.permissions import IsSuperuser, IsOwnerOrStaff
@@ -31,6 +31,17 @@ class CourseViewSet(ModelViewSet):
         user = get_object_or_404(queryset, pk=pk)
         serializer = CourseDetailSerializer(user)
         return Response(serializer.data)
+
+    def update(self, request, pk=None):
+        queryset = Course.objects.all()
+        user = get_object_or_404(queryset, pk=pk)
+        serializer = CourseUpdateSerializer(user)
+        # print(queryset)
+        # print(serializer.users_for_mail)
+        # print(Response.users_for_mail)
+
+        return Response(serializer.data)
+
 
 
 class SubscribeCreateView(CreateAPIView):
